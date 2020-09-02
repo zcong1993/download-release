@@ -3,12 +3,13 @@ package utils
 import (
 	"bytes"
 	"fmt"
-	"github.com/tidwall/gjson"
 	"io"
 	"log"
 	"net/http"
 	"os/exec"
 	"strings"
+
+	"github.com/tidwall/gjson"
 )
 
 func MakeGetRequest(url, token string) (*bytes.Buffer, error) {

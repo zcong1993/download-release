@@ -1,24 +1,29 @@
 package main
 
 import (
-	"github.com/zcong1993/download-release/utils"
-	"gopkg.in/AlecAivazis/survey.v1"
+	"flag"
+	"fmt"
 	"log"
 	"os"
+
+	"github.com/AlecAivazis/survey/v2"
+	"github.com/zcong1993/download-release/utils"
 )
 
 func main() {
 	host := os.Getenv("GITHUB_HOST")
 	token := os.Getenv("GITHUB_TOKEN")
 
-	var repoUrl string
-	repoUrlPrompt := &survey.Input{
-		Message: "Type the repo author and name: ",
+	flag.Parse()
+
+	args := flag.Args()
+
+	if len(args) != 1 {
+		fmt.Println("use as download-release [owner/repo]")
+		os.Exit(1)
 	}
-	err := survey.AskOne(repoUrlPrompt, &repoUrl, survey.Required)
-	if err != nil {
-		log.Fatal(err)
-	}
+
+	repoUrl := args[0]
 
 	author, repo := utils.ParseRepoUrl(repoUrl)
 
