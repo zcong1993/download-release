@@ -16,3 +16,13 @@ changelog:
       - '^refactor'
       - '^tweak'
       - '^test'
+
+brews:
+  - tap:
+      owner: zcong1993
+      name: homebrew-tap
+    folder: Formula
+    homepage: https://github.com/zcong1993/download-release
+    description: Easy download github release
+    test: |
+      system "#{bin}/download-release -h"
